@@ -1,0 +1,63 @@
+Bom dia pessoal, tudo certo? Hoje vou continuar falando sobre AngularJS, essa ferramenta que cada vez mais é utilizada na área de TI.
+Segue esse link (http://w3techs.com/technologies/details/js-angularjs/all/all) que apresenta alguns dados interessantes sobre o framework.
+
+Bom, vamos ao que importa
+
+Lição 4
+
+Hoje falarei sobre a utilização de filtros, uma maneira mais intuitiva de obter funcionalidades do controlador na visão.
+Lembrando da aula passada, foi criada uma função dentro do segundo controlador, a qual retornava o texto escrito no modelo do primeiro controlador ao contrário.
+Seguindo essa idéia, os filtros veem para generalizar e não haver necessidade de uma duplicação do código dentro dos controladores, para que ambos possuam uma mesma função.
+
+var myApp = angular.module('myApp', []); // essa linha define a criação de um novo aplicativo
+myApp.factory('Data', function(){ // aqui será criado um serviço Data, que retorna uma message
+	return {message:"I'm data from a service"}
+})
+
+myApp.filter('reverse', function(){
+	return function(text){
+		return text.split("").reverse().join("");
+	}
+})
+
+function FirstCtrl($scope, Data){ // passando Data para o controlador
+  $scope.data = Data;
+}
+function SecondCtrl($scope, Data){
+  $scope.data = Data;
+
+  $scope.reversedMessage = function(message){
+  	return message.split("").reverse().join("");
+  }
+}
+
+Eu mantive a função no segundo controlador só para vocês poderem verificar as diferenças. Caso eu desejasse utilizar a mesma função de reverter a ordem das letras, no controlador 1, seria necessária a duplicação da função 'reversedMessage' no mesmo.
+Com o filtro (linha 6) 'reverse' criado, a duplicação citada acima não tem necessidade de ocorrer. Modifiquem sua camada de visão como abaixo:
+
+<div ng-app="myApp">
+
+	  <div ng-controller="FirstCtrl">
+	    <input type="text" ng-model="data.message">
+	  	<h1>{{data.message}}</h1>
+	  </div>
+
+
+	  <div ng-controller="SecondCtrl">
+	    <input type="text" ng-model="data.message">
+	  	<h1>{{data.message|reverse}}</h1>
+ 	  </div>
+
+</div>
+
+Vejam que diferentemente da lição anterior que chamada 'reversedMessage' passando 'data.message' como parâmetro, dessa maneira não há necessidade. Além do mais, caso você deseje alterar a saída do 'FirstCtrl' como a do 'SecondCtrl', só há necessidade de alterar a visão como foi feito para o segundo h1.
+
+Podemos injetar alguns dados do nosso modelo como abaixo:
+
+myApp.filter('reverse', function(Data){
+	return function(text){
+		return text.split("").reverse().join("") + Data.message;
+	}
+})
+
+Por hoje é isso pessoal. Caso tenham alguma dúvida por favor entrem em contato, estarei sempre a disposição para ajduar no que puder.
+Por hoje é isso pessoal. Caso tenham alguma dúvida por favor entrem em contato, estarei sempre a disposição para ajduar no que puder.

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+   <script src="controllers.js"></script>
+
+   <meta charset="utf-8">
+
+   <title>AngularJS Lição 3</title>
+ </head>
+ <body>
+
+	<div ng-app="myApp">
+
+
+	  <div ng-controller="FirstCtrl">
+	    <input type="text" ng-model="data.message">
+	  	<h1>{{data.message}}</h1>
+	  </div>
+
+
+	  <div ng-controller="SecondCtrl">
+	    <input type="text" ng-model="data.message">
+	  	<h1>{{reversedMessage(data.message)}}</h1>
+ 	  </div>
+
+	</div>
+</body>
+</html>

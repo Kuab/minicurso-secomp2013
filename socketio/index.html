@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Contador de visitantes</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+    // Criando uma conexão Socket.io com servidor.
+    var socket = io.connect('http://localhost:8080');
+    // Ao conectar com servidor...
+    socket.on('connect', function(){
+      // Enviando mensagem ao servidor apenas para alertar o servidor.
+      socket.send('Ola Servidor');
+      // Evento message de resposta do servidor
+      // Ao receber uma mensagem do servidor,
+      // atualizar a tag de visitas.
+      socket.on('message', function(visitas){
+        document.getElementById('visitas').innerHTML = visitas;
+      });
+    });
+    </script>
+  </head>
+  <body>
+    <p>Contador de visitas online com Socket.io</p>
+    <p>Número de visitas: <span id="visitas">0</span></p>
+  </body>
+</html>

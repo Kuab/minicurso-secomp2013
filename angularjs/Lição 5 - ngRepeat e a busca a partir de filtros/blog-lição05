@@ -1,0 +1,84 @@
+Fala pessoal, tudo certo? Seguindo hoje com mais um tutorial rápido sobre AngularJS e mais uma boa funcionalidade que essa biblioteca Javascript nos proporciona.
+Falarei um pouco mais a utilização de filtros, desse vez juntando os filtros com uma iteração de dados, que vem do nosso controlador (lembrando sempre que esse controlador é o ViewModel).
+
+Lição 5
+
+Antes de iniciar a lição em si, seria interessante para quem não conhece, dar uma olhada no formato JSON (http://www.w3schools.com/json/). Os dados vindos do nosso controlador nessa tarefa, são retornados nesse formado. Quem já tem um conhecimento básico não precisa se preocupar, mas se quiser, é sempre bom adquirir mais conhecimento rs.
+
+Partindo para nossa lição, vamos excluir da visão que foi criada no nosso último tutorial, os dois controladores 'FirstCtrl' e 'SecondCtrl', e adicionar um novo controlador, chamadao 'TimesCtrl'.
+Esse controlador irá retornar dados no formato JSON para nossa visão, essa apresentando eles na página html.
+
+<div ng-app="myApp">
+	 <div ng-controller="TimesCtrl">
+		<input ng-model="searchText"/>
+		<table>
+			<tr ng-repeat="time in times.cast | filter:searchText">
+				<td>{{time.nome}}</td>
+				<td>{{time.posicao}}</td>
+			</tr>
+		</table>
+	 </div>
+</div>
+
+Observem que dentro do nosso controlador temos uma tabela, sendo nela apresentados os dados que recuperamos do nosso controlador. A tag ng-repeat irá realizar um loop, enquanto houverem dados em times.cast, guardar esses dados em time, e a partir dai apresentar nas colunas da tabela.
+Outra funcionalidade que foi citada, o filtro, é definido em duas partes. Primeiro, o input cria o modelo 'searchText', a partir da tag ng-model, e esse pode ser utilizado dentro de todo escopo do controlador.
+Voltando para ng-repeat, pode ser visto que há um '|', o que indica que será utilizado um filtro. Diferentemente da lição passada, esse filtro é pré-definido pelo angular. Vejamos, 'filter:searchText' indica que o texto escrito no input, será utilizado como filtro para o texto de saída, que vem do controlador. Para entendermos melhor, vamos criar o controlador:
+
+var myApp = angular.module('myApp', []); // essa linha define a criação de um novo aplicativo
+
+myApp.factory('Times',function(){
+	var Times = {};
+	Times.cast = [
+		{
+			nome: "Palmeiras",
+			posicao: 1
+		},
+		{
+			nome: "Corinthians",
+			posicao: 2
+		},
+		{
+			nome: "São Paulo",
+			posicao: 3
+		},
+		{
+			nome: "Santos",
+			posicao: 4
+		},
+		{
+			nome: "Portuguesa",
+			posicao: 5
+		},
+		{
+			nome: "Guarani",
+			posicao: 6
+		},
+		{
+			nome: "Ponte Preta",
+			posicao: 7
+		},
+		{
+			nome: "Mogi Mirim",
+			posicao: 8
+		},
+		{
+			nome: "São Caetano",
+			posicao: 9
+		},
+		{
+			nome: "Guaratinguetá",
+			posicao: 10
+		}
+	];
+	return Times;
+})
+
+function TimesCtrl($scope, Times){
+	$scope.times = Times;
+}
+
+Veja que no início, temos a criação do serviço 'Times'. Esse serviço retorna um JSON contendo alguns times, sendo que cada time tem um nome e uma posição.
+O controlador então recebe como parâmetro esse serviço, e o adiciona em seu escopo, para ser utilizado na visão.
+Voltando à visão, nosso modelo definido com nome de 'searchText' serve como um buscador de certo texto, dentro do JSON que retorna do controlador, ou seja, um filtro rápido e prático.
+
+Bom, por hoje é isso pessoal. Talvez tenham alguns conceitos mais confusos, mas não hesitem em mandar emais, comentarem e perguntarem. Estarei sempre a disposição.

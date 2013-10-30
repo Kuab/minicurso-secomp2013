@@ -1,0 +1,68 @@
+Apresentamos na lição passada uma introdução sobre AngularJS e como essa tecnologia facilita a programação Javascript.
+Nessa segunda lição continuaremos listando novos conceitos e funcionalidades, atentando sempre em passar o conhecimento da melhor maneira possível.
+
+Lição 2
+
+Hoje será apresentado o conceito de controlador. O controlador é quem disponibiliza os dados para a camada de visão. Seguindo o código final da lição 1, definimos um controlador para nos trazer os dados até nossa div. Os dados trazidos do controlador pertencerão ao escopo da div, na qual o controlador foi setado
+
+<div ng-app="">
+  <div ng-controller="FirstCtrl">
+    <h1>{{data.message + " world"}}</h1>
+    <div class="{{data.message}}">
+      Wrap me in a foundation component
+    </div>
+  </div>
+</div>
+
+Veja que a tag ng-controller foi adicionada. Isso implica unma chamada para um controlador, que no nosso caso chamamos de 'FirstCtrl'.
+
+function FirstCtrl($scope){
+  $scope.data = {message: "Hello"};
+}
+
+Imagine que tal controlador se comunique com um banco de dados. Esse controlador retornará dados no formado JSON, o qual serão adicionados no escopo da div que chama esse controlador, sendo possível utilizar os dados na nossa visão.
+
+Portanto, além de podermos modificar mais facilmente nossa página html utilizando AngularJS, essa comunicação entre a visão e o controlador é facilitada adicionando essa nova tag ng-controller.
+
+Vamos agora alterar novamente o código adicionando um input para entradas textuais:
+
+<div ng-app="">
+  <input type="text" ng-model="data.message">
+  <h1>{{data.message}}</h1>
+  <div ng-controller="FirstCtrl">
+    <input type="text" ng-model="data.message">
+    <h1>{{data.message}}</h1>
+  </div>
+  <div ng-controller="SecondCtrl">
+    <input type="text" ng-model="data.message">
+    <h1>{{data.message}}</h1>
+  </div>
+</div>
+
+Como temos agora um novo controlador, vamos implementá-lo também:
+
+function FirstCtrl($scope){
+  
+}
+function SecondCtrl($scope){
+  
+}
+
+Perceba que ao digitar, sempre serão atualizados todos os 'data.message'. Isso acontece pois existe um modelo 'root', ou seja, global para 'data.message'. Esse modelo é definido no primeiro input, o qual não pertence ao escopo de nenhum controlador. Portanto, sempre que qualqer um dos três input for atualizado, o que na verdade será modificado é um único modelo global, nosso 'data.message'. Esse fato se dá pela criação do objeto 'data'.
+
+Retirando o objeto e mantendo só o atributo 'message', observe que agora a mensagem de cada input aparece para cada saída h1. Isso ocorre pois, para cada escopo (root, FirstCtrl, SecondCtrl), um novo atributo 'message' sobreescreve o mesmo atributo do escopo anterior, modificando somente no escopo atual:
+
+<div ng-app="">
+  <input type="text" ng-model="message">
+  <h1>{{message}}</h1>
+  <div ng-controller="FirstCtrl">
+    <input type="text" ng-model="message">
+    <h1>{{message}}</h1>
+  </div>
+  <div ng-controller="SecondCtrl">
+    <input type="text" ng-model="message">
+    <h1>{{message}}</h1>
+  </div>
+</div>
+
+Obrigado e até a próxima lição!

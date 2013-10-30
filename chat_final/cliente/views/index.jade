@@ -1,0 +1,74 @@
+extends layout
+
+block body
+  .container(ng-controller='AppCtrl')
+    .row-fluid
+      .span9
+        h3 Mensagens
+        .well.message-spot(scroll-glue)
+          p(ng-repeat='message in messages',
+            class='') {{message.user}}: {{message.text}}
+
+        .navbar.navbar-inverse.navbar-fixed-bottom.bar-submit-message
+          .navbar-inner
+            .container
+              form(ng-submit='sendMessage()',class='well form-search form-send-message')
+                input(ng-model='message',class='span11 input-message', placeholder='Digite aqui sua mensagem...')
+                input(type='submit', value='Enviar', class='btn btn-success', style='margin-left: 10px;margin-top: 0')
+                    
+      .span3
+        h3 Usuários
+        .well.userBox
+          ul.nav.nav-list.userList(scroll-glue)
+            li(ng-repeat='user in users') 
+              a(ng-click="mention(user)") {{user}}
+    
+
+    #changeNameModal.modal.hide.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+        .modal-body
+          h3 Seu nome
+          p Seu nome atual é {{name}}
+          form(ng-submit='changeName()')
+            input(ng-model='newName')
+            input(type='submit', value='Mudar nome', class='btn btn-success',style='margin-left: 10px;')
+            a(data-dismiss='modal',class='btn btn-danger',style='margin-left: 10px') Cancelar
+
+    #infoModal.modal.hide.fade(tabindex='-1', role='dialog', aria-labelledby='infoModal', aria-hidden='true')
+        .modal-body
+          h3 Modelo de sala de bate-papo
+          p
+          |Aplicação desenvolvida para a minicurso SeComp2013
+          p  
+          |Sala de bate papo auxiliar a um ambiente de desenvolvimento.
+          h3 Tecnologias
+          ul
+            li
+              p
+              | Node.js 
+              span 
+                em (Servidor web)
+            li
+              p
+              | Express.js 
+              span
+                em (Framework backend, provê as chamadas restFul e a conexão com o banco)
+            li
+              p
+              | Socket.io 
+              span
+                em (Troca de mensagens através de websockets)
+            li
+              p
+              | Angular.js 
+              span
+                em (Framework frontend MVVM)
+            //li
+              p
+              | MongoDB 
+              span
+                em (Base de dados orientada a documentos)
+          h3 Fonte
+            p
+              a(href='https://github.com/Kuab/topicos4-chat') github
+
+

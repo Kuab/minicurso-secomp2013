@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+   <script src="controllers.js"></script>
+
+   <meta charset="utf-8">
+
+   <title>AngularJS Lição 5</title>
+ </head>
+ <body>
+
+	<div ng-app="myApp">
+	 <div ng-controller="TimesCtrl">
+		<input ng-model="searchText"/>
+		<table>
+			<tr ng-repeat="time in times.cast | filter:searchText">
+				<td>{{time.nome}}</td>
+				<td>{{time.posicao}}</td>
+			</tr>
+		</table>
+	 </div>
+	</div>
+</body>
+</html>

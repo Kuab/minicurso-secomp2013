@@ -1,0 +1,82 @@
+/* app css stylesheet */
+h3{
+  color: #00a859;
+}
+body{
+  padding-top: 70px;
+  background: rgb(234,234,234);
+  background: -moz-linear-gradient(top, rgba(234,234,234,1) 0%, rgba(255,255,255,1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(234,234,234,1)), color-stop(100%,rgba(255,255,255,1)));
+  background: -webkit-linear-gradient(top, rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
+  background: -o-linear-gradient(top, rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
+  background: -ms-linear-gradient(top, rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
+  background: linear-gradient(to bottom, rgba(234,234,234,1) 0%,rgba(255,255,255,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#ffffff',GradientType=0 );
+}
+.navbar-inverse .navbar-inner{
+  background: rgb(31,114,154);
+  background: -moz-linear-gradient(top, rgba(31,114,154,1) 0%, rgba(14,76,117,1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(31,114,154,1)), color-stop(100%,rgba(14,76,117,1)));
+  background: -webkit-linear-gradient(top, rgba(31,114,154,1) 0%,rgba(14,76,117,1) 100%);
+  background: -o-linear-gradient(top, rgba(31,114,154,1) 0%,rgba(14,76,117,1) 100%);
+  background: -ms-linear-gradient(top, rgba(31,114,154,1) 0%,rgba(14,76,117,1) 100%);
+  background: linear-gradient(to bottom, rgba(31,114,154,1) 0%,rgba(14,76,117,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f729a', endColorstr='#0e4c75',GradientType=0 );
+}
+.well ,.modal{
+  background-color: #092e47;
+  border: 1px solid #0e4c75;
+}
+.navbar-inverse .nav .active>a{
+  background: #092e47;
+}
+.overflowable {
+  height: 400px;
+}
+
+.well.message-spot{
+  margin-bottom: 50px;
+  height: 400px;
+  overflow: auto;
+}
+.todoBox{
+  margin-top: -5px;
+  height: 185px;
+}
+.userBox{
+  height: 120px;
+  margin-bottom: 0px;
+}
+.userList{
+  height: 110px;
+  overflow: auto;
+}
+.todoList{
+  height: 120px;
+  overflow: auto;
+  padding-top: 10px;
+}
+.bar-submit-message{
+  border-top: 1px solid #33b5e5;
+}
+
+.form-send-message {
+  margin-top: 20px
+}
+.overflowable p {
+  margin: 0;
+}
+
+
+p.active{
+  background: #FFF;
+  color: #000;
+}
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+  padding-left: 10px;
+}
+.done-false {
+  padding-left: 10px;
+}

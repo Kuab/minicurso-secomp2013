@@ -1,0 +1,27 @@
+Apresentamos na lição passada uma introdução sobre AngularJS e como essa tecnologia facilita a programação Javascript.
+Nessa segunda lição continuaremos apresentando novos conceitos e funcionalidades, atentando sempre em passar o conhecimento da melhor maneira possível.
+
+Lição 2
+
+Hoje será apresentado o conceito de controlador. O controlador é quem disponibiliza os dados para a camada de visão. Seguindo o código final da lição 1, definimos um controlador para nos trazer os dados até nossa div. Os dados trazidos do controlador pertencerão ao escopo da div, na qual o controlador foi setado
+
+<div ng-app="">
+  <div ng-controller="FirstCtrl">
+    <h1>{{data.message + " world"}}</h1>
+    <div class="{{data.message}}">
+      Wrap me in a foundation component
+    </div>
+  </div>
+</div>
+
+Veja que a tag ng-controller foi adicionada. Isso implica uma chamada para um controlador, que no nosso caso chamamos de 'FirstCtrl'.
+
+function FirstCtrl($scope){
+  $scope.data = {message: "Hello"};
+}
+
+Portanto, imagine que tal controlador se comunique com um banco de dados. Esse controlador retornará dados no formado JSON, o qual serão retornados para o escopo da div que chama esse controlador, sendo possível utilizar os dados na nossa visão.
+
+Portanto, além de podermos modificar mais facilmente nossa página html utilizando AngularJS, essa comunicação entre a visão e o controlador é facilitada adicionando essa nova tag ng-controller.
+
+Obrigado a todos e até a próxima.

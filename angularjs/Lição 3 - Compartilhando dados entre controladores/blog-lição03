@@ -1,0 +1,69 @@
+Bom dia pessoal, hoje continuarei falando sobre controladores, porém vou adicionar algumas funcionalidades a mais no nosso sisteminha da aula 2
+Na aula de hoje tentarei mostrar um pouco sobre comunicação entre controladores, além de como definir e utilizar métodos dentro de um certo escopo
+
+Lição 3
+
+Primeiramente, vamos retirar o primeiro input para obtermos o modelo 'data.message' somente utilizando escopo local de cada controlador.
+
+<div ng-app="">
+
+
+    <div ng-controller="FirstCtrl">
+	    <input type="text" ng-model="data.message">
+	  	<h1>{{data.message}}</h1>
+    </div>
+
+
+    <div ng-controller="SecondCtrl">
+	    <input type="text" ng-model="data.message">
+	  	<h1>{{data.message}}</h1>
+    </div>
+
+
+</div>
+
+Nessa nova implementação, não temos mais nosso modelo 'data.message' global. Por isso, cada modelo pertence a um controlador, e um não será afetado pelo outro.
+
+Vamos definir uma aplicação para nosso sistema. Modifique ng-app="" por ng-app="myApp". Agora estamos indicando que tudo o que estiver dentro da div com a tag ng-app, faz parte da aplicação myApp.
+
+Com isso, agora temos que criar nossa aplicação dentro do controlador.
+
+
+var myApp = angular.module('myApp', []); // essa linha define a criação de um novo aplicativo
+myApp.factory('Data', function(){ // aqui será criado um serviço Data, que retorna uma message
+	return {message:"I'm data from a service"}
+})
+
+function FirstCtrl($scope, Data){ // passando Data para o controlador
+  $scope.data = Data;
+}
+function SecondCtrl($scope, Data){ // fazendo isso para os dois controladores, 
+  $scope.data = Data;			   // estamos compartilhando dados entre eles
+}
+
+Observe o código com os comentários e as explicações.
+
+A primeira linha agora terá a criação de um aplicativo, que será utlizado dentro da nossa div com a tag ng-app. Para essa aplicação, utilizamos a chamada 'factory', criando assim um serviço de nome Data.
+
+Esse serviço pode ser utilizado pelos controladores, realizando assim um compartilhamento de dados.
+
+Partimos agora para utilização de funções dentro do escopo do controlador. Vamos modificar um pouco nosso 'SecondCtrl' e depois nossa camada de visão.
+
+function SecondCtrl($scope, Data){
+  $scope.data = Data;
+
+  $scope.reversedMessage = function(message){
+  	return message.split("").reverse().join("");
+  }
+}
+
+Agora podemos fazer a chamada de reversedMessage, passando a mensagem como parâmetro e retornando a partir do nosso controlador.
+
+<div ng-controller="SecondCtrl">
+	    <input type="text" ng-model="data.message">
+	  	<h1>{{reversedMessage(data.message)}}</h1>
+ </div>
+
+Essa lição abordou um pouco sobre funções dentro do controlador, além da troca de informações entre controladores. Brinquem um pouco com o código e testem, pois o entendimento fica muito mais fácil!
+
+Obrigado pessoal e até a próxima lição! Qualquer dúvida estamos a disposição!
