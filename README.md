@@ -1,5 +1,8 @@
-minicurso-secomp2013
+Mini Curso SeComp UFSCar 2013
 ====================
 
-Minicurso SeComp UFSCar 2013.
-Introdução a Node.js, Express, Angular e Socket.io
+Será abordada a construção de uma aplicaçõa single-page de tempo real, uma aplicação webchat básica.
+
+Pré requisitos
+====================
+Por tratar-se de um curso introdutório, o unico requisito é o conhecimento básico em JavaScript.
